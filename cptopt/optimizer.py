@@ -70,7 +70,7 @@ class MinorizationMaximizationOptimizer(CPTOptimizer):
 
         if verbose:
             print("#" * 50)
-            print(f" Starting MMOptimizer ".center(50, "#"))
+            print(" Starting MMOptimizer ".center(50, "#"))
             print("#" * 50 + "\n\n")
 
         for i in range(self.max_iter):
@@ -197,7 +197,7 @@ class GradientOptimizer(CPTOptimizer):
 
         if verbose:
             print("#" * 50)
-            print(f" Starting GradientOptimizer ".center(50, "#"))
+            print(" Starting GradientOptimizer ".center(50, "#"))
             print("#" * 50 + "\n\n")
 
         wall_time = [time.time()]
@@ -259,7 +259,7 @@ class MeanVarianceFrontierOptimizer(CPTOptimizer):
 
         if verbose:
             print("#" * 50)
-            print(f" Starting MeanVarianceOptimizer ".center(50, "#"))
+            print(" Starting MeanVarianceOptimizer ".center(50, "#"))
             print("#" * 50 + "\n\n")
 
         weight_history = []
@@ -334,7 +334,7 @@ class ConvexConcaveOptimizer(CPTOptimizer):
 
         if verbose:
             print("#" * 50)
-            print(f" Starting ConvexConcaveOptimizer ".center(50, "#"))
+            print(" Starting ConvexConcaveOptimizer ".center(50, "#"))
             print("#" * 50 + "\n\n")
 
         for i in range(self.max_iter):
@@ -423,10 +423,10 @@ class ConvexConcaveOptimizer(CPTOptimizer):
         neg_returns = previous_portfolio_returns[neg_inds]
 
         p_weights = self.utility.cumulative_weights(N, delta=self.utility.delta_pos)[
-            -len(pos_returns) :
+            -len(pos_returns):
         ]
         n_weights = self.utility.cumulative_weights(N, delta=self.utility.delta_neg)[
-            -len(neg_returns) :
+            -len(neg_returns):
         ]
 
         p_weights_sorted = p_weights[pos_returns.argsort().argsort()]
