@@ -37,5 +37,3 @@ cc.optimize(r, initial_weights=initial_weights, verbose=True)
 
 ga = GradientOptimizer(utility)
 ga.optimize(r, initial_weights=initial_weights, verbose=True)
-
-
