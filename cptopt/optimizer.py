@@ -52,16 +52,14 @@ class MinorizationMaximizationOptimizer(CPTOptimizer):
         self,
         r: np.array,
         verbose: bool = False,
-        solver=None,
-        initial_weights=None,
-        eps=1e-4,
+        solver: Optional[str] = None,
+        initial_weights: Optional[np.array] = None,
+        eps: float = 1e-4,
         max_time: float = np.inf,
     ) -> None:
 
         w_prev = (
-            initial_weights
-            if initial_weights is not None
-            else np.ones(r.shape[1]) / r.shape[1]
+            initial_weights if initial_weights is not None else np.ones(r.shape[1]) / r.shape[1]
         )
         weight_history = [w_prev]
         wall_time = [time.time()]
@@ -128,14 +126,12 @@ class GradientOptimizer(CPTOptimizer):
         self,
         utility: Union[CPTUtility, CPTUtilityGA],
         max_iter: int = 100_000,
-        gpu=False,
+        gpu: bool = False,
     ):
 
         super().__init__(utility, max_iter)
         self.device = (
-            torch.device("cuda")
-            if (torch.cuda.is_available() and gpu)
-            else torch.device("cpu")
+            torch.device("cuda") if (torch.cuda.is_available() and gpu) else torch.device("cpu")
         )
         if isinstance(self.utility, CPTUtility):
             CPTUtilityGA.convert_to_class(self.utility)
@@ -173,25 +169,15 @@ class GradientOptimizer(CPTOptimizer):
                 initial_weights = torch.tensor(initial_weights)
             # TODO: fix for 1d TENSOR input
         else:
-            initial_weights = (
-                torch.ones(returns.shape[1], dtype=torch.float64) / returns.shape[1]
-            )
+            initial_weights = torch.ones(returns.shape[1], dtype=torch.float64) / returns.shape[1]
             if starting_points and starting_points > 1:
-                dire = torch.distributions.dirichlet.Dirichlet(
-                    torch.ones(returns.shape[1])
-                )
+                dire = torch.distributions.dirichlet.Dirichlet(torch.ones(returns.shape[1]))
                 additional_starting_weights = dire.sample([starting_points - 1])
-                initial_weights = torch.vstack(
-                    [initial_weights, additional_starting_weights]
-                )
+                initial_weights = torch.vstack([initial_weights, additional_starting_weights])
             initial_weights = torch.atleast_2d(initial_weights).T
 
         unconstrained_w = (
-            torch.log(initial_weights)
-            .to(self.device)
-            .clone()
-            .detach()
-            .requires_grad_(True)
+            torch.log(initial_weights).to(self.device).clone().detach().requires_grad_(True)
         )
         optimizer = torch.optim.SGD([unconstrained_w], lr=lr)
 
@@ -229,15 +215,17 @@ class GradientOptimizer(CPTOptimizer):
         self._wall_time = np.array(wall_time)
 
         if keep_history:
-            self._all_weights_history = (
-                torch.stack(weight_history).cpu().detach().numpy()
-            )
+            self._all_weights_history = torch.stack(weight_history).cpu().detach().numpy()
             self._weights_history = self._all_weights_history[..., best_weights]
 
 
 class MeanVarianceFrontierOptimizer(CPTOptimizer):
     def optimize(
-        self, returns: np.array, verbose: bool = False, solver=None, samples: int = 100
+        self,
+        returns: np.array,
+        verbose: bool = False,
+        solver: Optional[str] = None,
+        samples: int = 100,
     ) -> None:
 
         wall_time = [time.time()]
@@ -286,7 +274,7 @@ class MeanVarianceFrontierOptimizer(CPTOptimizer):
         self._wall_time = np.array(wall_time)
 
     @staticmethod
-    def _get_min_variance(Sigma):
+    def _get_min_variance(Sigma: np.array) -> np.float:
         w = cp.Variable(Sigma.shape[0], nonneg=True)
         objective = cp.Minimize(cp.quad_form(w, Sigma))
         constraints = [cp.sum(w) == 1]
@@ -295,7 +283,7 @@ class MeanVarianceFrontierOptimizer(CPTOptimizer):
         return objective.value
 
     @staticmethod
-    def _get_max_return_variance(mu: np.array):
+    def _get_max_return_variance(mu: np.array) -> np.float:
         w = cp.Variable(len(mu), nonneg=True)
         objective = cp.Maximize(w @ mu)
         constraints = [cp.sum(w) == 1]
@@ -314,16 +302,14 @@ class ConvexConcaveOptimizer(CPTOptimizer):
         self,
         r: np.array,
         verbose: bool = False,
-        solver=None,
-        initial_weights=None,
+        solver: Optional[str] = None,
+        initial_weights: Optional[np.array] = None,
         eps: float = 1e-4,
         max_time: float = np.inf,
     ) -> None:
 
         w_prev = (
-            initial_weights
-            if initial_weights is not None
-            else np.ones(r.shape[1]) / r.shape[1]
+            initial_weights if initial_weights is not None else np.ones(r.shape[1]) / r.shape[1]
         )
 
         wall_time = [time.time()]
