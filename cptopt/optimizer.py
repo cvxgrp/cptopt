@@ -167,7 +167,6 @@ class GradientOptimizer(CPTOptimizer):
                 if initial_weights.ndim == 1:
                     initial_weights = np.atleast_2d(initial_weights).T
                 initial_weights = torch.tensor(initial_weights)
-            # TODO: fix for 1d TENSOR input
         else:
             initial_weights = torch.ones(returns.shape[1], dtype=torch.float64) / returns.shape[1]
             if starting_points and starting_points > 1:
