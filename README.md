@@ -15,6 +15,7 @@ pip install git+https://github.com/cvxpy/cvxpy.git
 ```
 
 ## Minimum working example
+We are unable to provide the full data set used in the paper for licensing reasons. We, therefore, give a minimum working example using simulated data below.
 ```python
 import numpy as np
 from scipy.stats import multivariate_normal as normal
