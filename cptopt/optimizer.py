@@ -52,7 +52,7 @@ class MinorizationMaximizationOptimizer(CPTOptimizer):
         self,
         r: np.array,
         verbose: bool = False,
-        solver: Optional[str] = None,
+        solver: Optional[str] = cp.SCS,
         initial_weights: Optional[np.array] = None,
         eps: float = 1e-4,
         max_time: float = np.inf,
