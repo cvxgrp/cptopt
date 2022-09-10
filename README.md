@@ -57,3 +57,10 @@ cc.optimize(r, initial_weights=initial_weights, verbose=True)
 ga = GradientOptimizer(utility)
 ga.optimize(r, initial_weights=initial_weights, verbose=True)
 ```
+The optimal weights can then be accessed via the `weights` property.
+```py
+mv.weights
+mm.weights
+cc.weights
+ga.weights
+```
