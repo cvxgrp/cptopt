@@ -1,5 +1,7 @@
 # Portfolio Optimization with Cumulative Prospect Theory Utility via Convex Optimization
 
+This repo accompanies our [paper](https://arxiv.org/abs/2209.03461).
+
 ## Installation
 
 The `cptopt` package can be installed using `pip` as follows
@@ -64,3 +66,17 @@ mm.weights
 cc.weights
 ga.weights
 ```
+
+## Citing
+If you want to reference our paper in your research, please consider citing us by using the following BibTeX:
+
+```BibTeX
+@misc{luxenberg2022cptopt,
+  author = {Luxenberg, Eric and Schiele, Philipp and Boyd, Stephen},
+  doi = {10.48550/ARXIV.2209.03461},
+  title = {Portfolio Optimization with Cumulative Prospect Theory Utility via Convex Optimization},
+  url = {https://arxiv.org/abs/2209.03461},
+  year = {2022}
+}
+```
+
