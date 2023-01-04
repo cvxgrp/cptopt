@@ -10,12 +10,6 @@ The `cptopt` package can be installed using `pip` as follows
 pip install git+https://github.com/cvxgrp/cptopt.git
 ```
 
-The installation requires `cvxpy>=1.3`, which is not released yet.
-In the meantime, the latest version can be installed via
-```python
-pip install git+https://github.com/cvxpy/cvxpy.git
-```
-
 ## Minimum working example
 We are unable to provide the full data set used in the paper for licensing reasons. We, therefore, give a minimum working example using simulated data below.
 ```python
