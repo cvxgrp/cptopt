@@ -65,12 +65,14 @@ ga.weights
 If you want to reference our paper in your research, please consider citing us by using the following BibTeX:
 
 ```BibTeX
-@misc{luxenberg2022cptopt,
-  author = {Luxenberg, Eric and Schiele, Philipp and Boyd, Stephen},
-  doi = {10.48550/ARXIV.2209.03461},
-  title = {Portfolio Optimization with Cumulative Prospect Theory Utility via Convex Optimization},
-  url = {https://arxiv.org/abs/2209.03461},
-  year = {2022}
+@article{luxenberg2024cptopt,
+  title={Portfolio Optimization with Cumulative Prospect Theory Utility via Convex Optimization},
+  author={Luxenberg, Eric and Schiele, Philipp and Boyd, Stephen},
+  journal={Computational Economics},
+  pages={1--21},
+  year={2024},
+  publisher={Springer}
+  url = {https://web.stanford.edu/~boyd/papers/pdf/cpt_opt.pdf},
 }
 ```
 
