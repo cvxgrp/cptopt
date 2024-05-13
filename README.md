@@ -73,7 +73,7 @@ If you want to reference our paper in your research, please consider citing us b
   year={2024},
   doi = {https://doi.org/10.1007/s10614-024-10556-x},
   publisher={Springer},
-  url = {https://web.stanford.edu/~boyd/papers/pdf/cpt_opt.pdf},
+  url = {https://web.stanford.edu/\%7Eboyd/papers/pdf/cpt_opt.pdf},
 }
 ```
 
